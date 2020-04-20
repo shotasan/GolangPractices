@@ -30,3 +30,42 @@ func AbbrevName(name string) string{
   }
   return strings.ToUpper(strings.Join(result, "."))
 }
+
+// No.2
+// If you can't sleep, just count sheep!!
+// Task:
+// Given a non-negative integer, 3 for example, return a string with a murmur: "1 sheep...2 sheep...3 sheep...". Input will always be valid, i.e. no negative integers.
+
+// Best
+package kata
+
+import (
+  "fmt"
+  "strings"
+)
+
+func countSheep(num int) string {
+  var sb strings.Builder
+
+  for count := 1; count <= num; count++ {
+        fmt.Fprintf(&sb, "%d sheep...", count)
+  }
+  
+  return sb.String()
+}
+
+// My
+package kata
+
+import (
+  "strconv"
+  "strings"
+)
+
+func countSheep(num int) string {
+  var result []string
+  for i := 1; i <= num; i++ {
+    result = append(result, strconv.Itoa(i) + " sheep...")
+  }
+  return strings.Join(result, "")
+}
