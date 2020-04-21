@@ -69,3 +69,23 @@ func countSheep(num int) string {
   }
   return strings.Join(result, "")
 }
+
+// No.3
+// Write function isPalindrome that checks if a given string (case insensitive) is a palindrome.
+// In Racket, the function is called palindrome?
+// (palindrome? "nope") ; returns #f
+// (palindrome? "Yay")  ; returns #t
+
+// Best
+func IsPalindrome(s string) bool {
+  runes := []rune(strings.ToLower(s))
+  length := len(runes)
+
+  for i := 0; i < length/2; i++ {
+    if runes[i] != runes[length-1-i] {
+      return false
+    }
+  }
+
+  return true
+}
