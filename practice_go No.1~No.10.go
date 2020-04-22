@@ -89,3 +89,16 @@ func IsPalindrome(s string) bool {
 
   return true
 }
+
+// No.4
+// Yor task is to write function factorial
+
+package kata
+
+func Factorial(n int) int {
+  if n < 2 {
+    return 1
+  }
+  
+  return n * Factorial(n - 1)
+}
