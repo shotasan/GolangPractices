@@ -145,3 +145,41 @@ func PrinterError(s string) string {
   }
   return fmt.Sprintf("%d/%d", errors, len(s))
 }
+
+// No.6
+// Input:
+// a string strng
+// an array of strings arr
+// Output of function contain_all_rots(strng, arr) (or containAllRots or contain-all-rots):
+// a boolean true if all rotations of strng are included in arr (C returns 1)
+// false otherwise (C returns 0)
+// Examples:
+// contain_all_rots(
+//   "bsjq", ["bsjq", "qbsj", "sjqb", "twZNsslC", "jqbs"]) -> true
+// contain_all_rots(
+//   "Ajylvpy", ["Ajylvpy", "ylvpyAj", "jylvpyA", "lvpyAjy", "pyAjylv", "vpyAjyl", "ipywee"]) -> false)
+// Note:
+// Though not correct in a mathematical sense
+// we will consider that there are no rotations of strng == ""
+// and for any array arr: contain_all_rots("", arr) --> true
+
+// Best
+package kata
+
+func ContainAllRots(strng string, arr []string) bool { 
+    counter := 0
+    master := []string{}
+    for i,_ := range strng{
+				// 簡易スライス式でrotationを実現する
+        master = append(master,strng[i:]+strng[:i])
+    }
+    for _,j := range master{
+        for _,k := range arr{
+            if j == k{
+                counter ++
+                break
+            }
+        }
+    }
+    return len(strng) == counter
+}
