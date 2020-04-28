@@ -183,3 +183,51 @@ func ContainAllRots(strng string, arr []string) bool {
     }
     return len(strng) == counter
 }
+
+// No.7
+// The vowel substrings in the word codewarriors are o,e,a,io.
+// The longest of these has a length of 2. Given a lowercase string that has alphabetic characters only and no spaces, return the length of the longest vowel substring.
+// Vowels are any of aeiou.
+
+// Best
+func isVowel(r rune) bool {
+    switch r {
+    case 'a', 'e', 'i', 'o', 'u':
+        return true
+    }
+    return false
+}
+
+func Solve(s string) int {
+    substr_length := 0
+    max_length := 0
+
+    for _, c := range s {
+      if isVowel(c) {
+        substr_length += 1
+        if max_length < substr_length {
+          max_length = substr_length
+        }
+      } else {
+        substr_length = 0
+      }
+    }
+    return max_length  
+}
+
+// My
+import (
+  "regexp"
+)
+
+func Solve(s string) int {
+    re := regexp.MustCompile(`[a e i o u]+`)
+    results := re.FindAllString(s, -1)
+    max := 0
+    for _, s := range results {
+      if max < len(s) {
+        max = len(s)
+      }
+    }
+    return max
+}
