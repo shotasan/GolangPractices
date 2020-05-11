@@ -259,3 +259,30 @@ func SumCubes(n int) int {
   }
   return int(res)
 }
+
+// No.9
+// Count the number of occurrences of each character and return it as a list of tuples in order of appearance.
+// For empty output return an empty list.
+// Example:
+// OrderedCount("abracadabra") == []Tuple{Tuple{'a', 5}, Tuple{'b', 2}, Tuple{'r', 2}, Tuple{'c', 1}, Tuple{'d', 1}}
+// // Where
+// type Tuple struct {
+//     Char  rune
+//     Count int
+// }
+
+// Best
+import "strings"
+
+func OrderedCount(text string) []Tuple {
+  counts := make([]Tuple, 0, len(text))
+  counted := ""
+  
+  for _, r := range(text) {
+    if strings.Count(counted, string(r)) == 0 {
+      counts = append(counts, Tuple{Char: r, Count: strings.Count(text, string(r))})
+      counted += string(r)
+    }
+  }
+  return counts 
+}
