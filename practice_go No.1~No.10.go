@@ -274,13 +274,19 @@ func SumCubes(n int) int {
 // Best
 import "strings"
 
+// 与えられた文字列を１文字づつチェックし、初出現の文字の場合はTuple型をつくり文字のバイトコードと文字列中の出現回数をCountに入れる
+// チェック済みの文字はcountedに入れていき、countedに入っているものは処理を飛ばす
 func OrderedCount(text string) []Tuple {
   counts := make([]Tuple, 0, len(text))
   counted := ""
   
   for _, r := range(text) {
+		// strings.Countは第一引数に文字列を渡し、第２引数にカウントする文字を渡す
+		// 第２引数が空文字の場合は第一引数の文字数+1の数値を返す
     if strings.Count(counted, string(r)) == 0 {
-      counts = append(counts, Tuple{Char: r, Count: strings.Count(text, string(r))})
+			// 初出現の文字の場合はTuple型を作ってTuple型スライスcountsに追加する
+			counts = append(counts, Tuple{Char: r, Count: strings.Count(text, string(r))})
+			// チェックした文字をチェック済みとしてcountedに追加する
       counted += string(r)
     }
   }
