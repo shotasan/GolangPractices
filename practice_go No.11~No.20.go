@@ -40,3 +40,30 @@ func Points(games []string) int {
   }
   return result
 }
+
+// No.12
+// The two oldest ages function/method needs to be completed. It should take an array of numbers as its argument and return the two highest numbers within the array. The returned value should be an array in the format [second oldest age, oldest age].
+// The order of the numbers passed in could be any order. The array will always include at least 2 items.
+// For example:
+// TwoOldestAges([]int{1, 5, 87, 45, 8, 8}) // should return [2]int{45, 87}
+
+// My
+import "sort"
+
+func TwoOldestAges(ages []int) [2]int {
+  sort.Sort(sort.IntSlice(ages))
+  return [2]int{ages[len(ages)-2], ages[len(ages)-1]}
+}
+
+// Best
+func TwoOldestAges(ages []int) [2]int {
+  a, b := 0, 0
+  for _, v := range ages {
+    if v > b {
+      a, b = b, v
+    } else if v > a {
+      a = v
+    }
+  }
+  return [2]int{a, b}
+}
