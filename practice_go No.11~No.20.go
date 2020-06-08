@@ -133,3 +133,36 @@ func bandNameGenerator(word string) string {
 
   return strings.Title(word) + word[1:]
 }
+
+// No.15
+// This time no story, no theory. The examples below show you how to write function accum:
+// Examples:
+// accum("abcd") -> "A-Bb-Ccc-Dddd"
+// accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+// accum("cwAt") -> "C-Ww-Aaa-Tttt"
+// The parameter of accum is a string which includes only letters from a..z and A..Z.
+
+// My
+import "strings"
+
+func Accum(s string) string {
+    var strs []string
+    for i, v := range s {
+      tmp := strings.Repeat(strings.ToLower(string(v)), i + 1)
+      strs = append(strs, strings.Title(tmp))
+    }
+    return strings.Join(strs, "-")
+}
+
+// Best
+import "strings"
+
+func Accum(s string) string {
+    parts := make([]string, len(s))
+    
+    for i := 0; i < len(s); i++ {
+      parts[i] = strings.ToUpper(string(s[i])) + strings.Repeat(strings.ToLower(string(s[i])), i)
+    }
+    
+    return strings.Join(parts, "-")
+}
