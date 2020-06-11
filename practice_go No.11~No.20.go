@@ -202,3 +202,28 @@ func UnluckyDays(year int) int {
   }
   return tot
 }
+
+// No.17
+// If a = 1, b = 2, c = 3 ... z = 26
+// Then l + o + v + e = 54
+// and f + r + i + e + n + d + s + h + i + p = 108
+// So friendship is twice stronger than love :-)
+// The input will always be in lowercase and never be empty.
+
+// My
+func WordsToMarks(s string) int {
+  res := 0
+  for _, v := range s {
+    res += int(v) - 96
+  }
+  return res
+}
+
+// Best
+func WordsToMarks(s string) int {
+  count := 0
+  for _, i := range s {
+    count += int(i) - 'a' + 1;
+  }
+  return count
+}
