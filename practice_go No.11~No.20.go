@@ -359,3 +359,38 @@ func MakeValley(arr []int) []int {
   }
   return append(a, b...)
 }
+
+// No.20
+// Your task, is to create NxN multiplication table, of size provided in parameter.
+// for example, when given size is 3:
+// 1 2 3
+// 2 4 6
+// 3 6 9
+// for given example, the return value should be: [[1,2,3],[2,4,6],[3,6,9]]
+
+// My
+func MultiplicationTable(size int) [][]int {
+  if size == 0 {
+    return [][]int{}
+	}
+	
+  var res [][]int  
+  for i := 1; i <= size; i++ {
+    tmp := make([]int, size)
+    for j := 0; j < size; j++ {
+      tmp[j] = (j + 1) * i
+    }
+    res = append(res, tmp)
+  }
+  return res
+}
+
+// Best
+func MultiplicationTable(size int) [][]int {
+  res := make([][]int, size)
+  for i := 0 ; i < size ; i ++ {
+    for x := 1 ; x < size + 1 ; x ++ {
+      res[i] = append(res[i], (i + 1) * x)
+      }}
+  return res
+}
