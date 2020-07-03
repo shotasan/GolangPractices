@@ -195,3 +195,44 @@ func Capitalize(s string, a []int) string {
   }
   return string(r)
 }
+
+// No.27
+// Given a string, capitalize the letters that occupy even indexes and odd indexes separately, and return as shown below. Index 0 will be considered even.
+// For example, capitalize("abcdef") = ['AbCdEf', 'aBcDeF']. See test cases for more examples.
+// The input will be a lowercase string with no spaces.
+
+// My
+import "strings"
+
+func Capitalize(st string) []string {
+  even := make([]string, len(st))
+  odd := make([]string, len(st))
+  
+  for i, v := range st {
+    if i % 2 == 0 {
+      even[i] = strings.ToUpper(string(v))
+      odd[i] = string(v)
+    } else {
+      odd[i] = strings.ToUpper(string(v))
+      even[i] = string(v)
+    }
+  }
+  return []string{strings.Join(even, ""), strings.Join(odd, "")}
+}
+
+// Best
+import "strings"
+
+func Capitalize(str string) []string {
+  res := []string{"",""}
+  for i, chr := range str {
+    if i % 2 == 0 {
+     res[0] += strings.ToUpper(string(chr))
+     res[1] += string(chr)
+    } else {
+     res[0] += string(chr)
+     res[1] += strings.ToUpper(string(chr))
+    }
+  }
+  return res
+}
